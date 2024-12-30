@@ -9,22 +9,6 @@ AND status_pengisian = 'Berhasil'
 AND type_transaksi IN ('Transaksi', 'Topup')
 ORDER BY 4;
 
-SELECT id, member_id, price, created_at, updated_at, type_transaksi, produk_description,
-CASE WHEN member_id IN (
-14671, 14594, 14619, 14606, 14638, 
-15343, 14623, 14627, 14756, 15258, 
-14621, 14566, 14583, 14434, 14601, 14673, 14590) THEN 'INTERN'
-ELSE 'NOT INTERN' END AS ket_status
-FROM transaksi
-WHERE created_at BETWEEN '2023-04-01 00:00:00' AND '2023-05-01 00:00:00'
-AND status_pengisian = 'Berhasil'
-AND type_transaksi IN ('Transaksi', 'Topup');
-
---- REGISTER
-SELECT id AS TOTAL_REGISTER, created_at
-FROM members
-WHERE created_at < '2023-06-01 00:00:00';
-
 -- ALL REGISTER
 SELECT id, created_at AS tgl_register
 FROM members
@@ -110,13 +94,4 @@ FROM members
 WHERE created_at BETWEEN '2023-06-01 00:00:00' AND '2023-06-08 00:00:00'
 AND status_member = 'premium';
 
-SELECT t.id, t.member_id, t.price, t.created_at, t.type_transaksi, t.produk_description, m.status_member
-FROM transaksi t LEFT JOIN members m ON t.member_id = m.id
-WHERE t.created_at BETWEEN '2023-06-01 00:00:00' AND '2023-06-08 00:00:00'
-AND status_pengisian = 'Berhasil'
-AND type_transaksi IN ('Transaksi', 'Topup')
-ORDER BY 4;
 
-select id, username, created_at, status_member
-from members
-where id = 13737; 
